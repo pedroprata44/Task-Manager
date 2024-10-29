@@ -6,6 +6,9 @@ namespace Console{
             taskList.Add(task);
             return task;
         }
+        public Task GetTask(Guid Id){
+            return taskList.FirstOrDefault(t => t.Id == Id) ?? throw new Exception("Task not found!");
+        }
         public string RemoveTask(Guid id){
             taskList.Remove(taskList.FirstOrDefault(t => t.Id == id) ?? throw new Exception("Task not found!"));
             return "";
