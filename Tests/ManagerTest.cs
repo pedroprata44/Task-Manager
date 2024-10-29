@@ -72,4 +72,31 @@ public class ManagerTest{
         // Then
         Assert.Equal($"{task.Id} {task.Description} {task.Completed}\n", tasksListed);
     }
+    [Fact]
+    public void ShouldCompletedATaskInTheList()
+    {
+        // Given
+        var inputTask = new {
+            description = "task"
+        };
+        // When
+        Console.Task task = manager.AddTask(inputTask.description);
+        manager.CompletedTask(task.Id);
+        // Then
+        Assert.True(task.Completed);
+    }
+    [Fact]
+    public void ShouldNotChangeATaskToSameValue()
+    {
+        // Given
+        var inputTask = new {
+            description = "task"
+        };
+        // When
+        Console.Task task = manager.AddTask(inputTask.description);
+        manager.CompletedTask(task.Id);
+        var exception = Assert.Throws<Exception>(() => manager.CompletedTask(task.Id));
+        // Then
+        Assert.Equal("Task has completed!", exception.Message);
+    }
 }
