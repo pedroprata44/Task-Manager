@@ -18,6 +18,11 @@ namespace Console{
             task.Description = description;
             return "";
         }
+        public void CompletedTask(Guid id){
+            Task task = taskList.FirstOrDefault(t => t.Id == id) ?? throw new Exception("Task not found!");
+            if(task.Completed) throw new Exception("Task has completed!");
+            task.Completed = true;
+        }
         public string ListTasks(){
             string output = "";
             if(taskList.Count == 0) throw new Exception("List is Empty");
