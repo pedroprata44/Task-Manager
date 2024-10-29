@@ -4,9 +4,7 @@ namespace Tests;
 
 public class UnitTest1: IDisposable
 {
-    Manager manager;
     public UnitTest1(){
-        manager = new ();
     }
     public void Dispose(){
         System.Console.WriteLine("Hello");
@@ -15,6 +13,7 @@ public class UnitTest1: IDisposable
     [Fact]
     public void Test1()
     {
+        Manager manager = new Manager();
         var inputTask = new {description = "task"};
         Console.Task task = manager.AddTask(inputTask.description);
         Assert.Equal(inputTask.description, task.Description);
